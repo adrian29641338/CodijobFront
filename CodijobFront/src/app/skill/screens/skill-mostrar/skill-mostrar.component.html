@@ -1,0 +1,59 @@
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalEditarSkill" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body" *ngIf="selectedSkill">
+        <div class="form-group">
+          <label for="inputSkillId" class="mb-2">Id</label>
+          <input type="text" #inputSkillId id="inputSkillId" class="form-control mb-2" value="{{selectedSkill.skillId}}" readonly>
+          <small  class="text-muted">Este campo no se puede modificar</small>
+        </div>
+        <div class="form-group">
+          <label for="inputSkillNom" class="mb-2">Nombre del Skill:</label>
+          <input type="text" #inputSkillNom id="inputSkillNom" class="form-control mb-2" value="{{selectedSkill.skillNom}}">
+          <small  class="text-muted">Coloque en nuevo nombre del Skill</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="actualizarSkill()" data-dismiss="modal">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="companies-info">
+  <div class="container">
+    <div class="card text-left">
+      <img class="card-img-top" src="http://placehold.it/1200x200/" alt="">
+      <div class="card-body">
+        <h4 class="card-title">Mantenimientos - Skills</h4>
+        <table *ngIf="skills.length > 0" class="table table-hover">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+          <tr *ngFor="let skill of skills">
+            <td>{{skill.skillId}}</td>
+            <td>{{skill.skillNom}}</td>
+            <td><button class="btn btn-primary mr-3"
+                        data-toggle="modal"
+                        data-target="#modalEditarSkill"
+                        (click)="selectSkill(skill)">Editar</button>
+                <button class="btn btn-danger">Eliminar</button></td>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
